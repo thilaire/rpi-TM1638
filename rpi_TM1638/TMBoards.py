@@ -56,12 +56,12 @@ class TMBoards(chainedTM1638):
 class Leds(object):
 	"""Class to manipulate the leds mounted on the chained TM Boards"""
 
-	def __init__ ( self, TM ):
+	def __init__(self, TM):
 		"""Initialize the Led object
 		"""
 		self._TM = TM
 
-	def __setitem__ ( self, index, value ):
+	def __setitem__(self, index, value):
 		"""
 		called by TM.Leds[i] = value
 		:param index: index of the led or tuple of indexes
@@ -76,12 +76,12 @@ class Leds(object):
 class Segments(object):
 	"""Class to manipulate the 7-segment displays on the chained TM Boards"""
 
-	def __init__ ( self, TM ):
+	def __init__(self, TM):
 		"""Initialize the Segment object"""
 		self._TM = TM
 		self._intern = [0, ] * (8 * self._TM.nbBoards)  # 8 7-segments per board
 
-	def __setitem__ ( self, index, value ):
+	def __setitem__(self, index, value):
 		"""
 		called by 
 			TM.segments[i] = string
@@ -109,18 +109,26 @@ class Segments(object):
 		:param value: string (or one-character string) when index is a int, otherwise a boolean
 		"""
 		if isinstance(index, int):
-			# TM.segments[i] = '0123'
-			for i, c in enumerate(value):
-				# get the value to display
+			# parse string to transform it in list of 8-bit int to send to the TM1638
+			# -> allows to parse the '.' characters
+			lv = []
+			for c in value:
 				if c not in FONT:
 					raise ValueError("Cannot display the character '%s'", c)
-				val = FONT[c]
+				elif c == '.' and lv:    # c is a point and the previous char doesn't a point
+					lv.append(lv.pop() | 128)  # add 128 to the previous char (ie add the point)
+				else:
+					lv.append(FONT[c])
+			# send every display if something has changed
+			for val in lv:
 				# check if something change (otherwise do not send data, it's useless)
-				if self._intern[index + i] != val:
+				if self._intern[index] != val:
 					# store the new intern value
-					self._intern[index + i] = val
+					self._intern[index] = val
 					# send the data to the TM
-					self._TM.sendData(((index + i) % 8) * 2, val, (index + i) // 8)
+					self._TM.sendData((index % 8) * 2, val, index // 8)
+				index += 1
+
 		elif isinstance(index, (list, tuple)):
 			# get the 7-segment display index and the led index
 			i, j = index
