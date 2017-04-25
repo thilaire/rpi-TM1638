@@ -12,14 +12,14 @@ def readme():
 		return f.read()
 
 
-setup(name='rpi-TM1638',
+setup(name='rpi_TM1638',
 	version='0.1',
 	description='A Raspberry Pi driver for (chained) TM1638 boards',
 	long_description=readme(),
 	classifiers=[
 		'Development Status :: 4 - Beta',
-		'Operating System :: POSIX :: Linux'
-		'Environment :: Other Environment'
+		'Operating System :: POSIX :: Linux',
+		'Environment :: Other Environment',
 		'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
 		'Programming Language :: Python :: 2.7',
 		'Topic :: System :: Hardware :: Hardware Drivers',
@@ -27,11 +27,11 @@ setup(name='rpi-TM1638',
 		'Topic :: System :: Hardware'
 	],
 	keywords='TM1638 driver chained raspberry pi',
-	url='https://github.com/thilaire/rpi-TM1638',
+	url='https://github.com/thilaire/rpi_TM1638',
 	author='Thibault Hilaire',
 	author_email='thibault@docmatic.fr',
 	license='GPL3',
-	packages=['rpi-TM1638'],
-	install_requires=[ RPi ],
+	packages=['rpi_TM1638'],
+	install_requires=['RPi.GPIO'],
 	include_package_data=True,
 	zip_safe=False)

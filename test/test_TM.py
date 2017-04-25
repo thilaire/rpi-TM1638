@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from rpi-TM1638 import TMBoards
+from rpi_TM1638 import TMBoards
 
 # my GPIO settings (two TM1638 boards connected on GPIO19 and GPIO13 for DataIO and Clock; and on GPIO06 and GPIO26 for the STB)
 DIO = 19
