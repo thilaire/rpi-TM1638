@@ -2,9 +2,8 @@
 =============
 
 `rpi-TM1638` is (yet another) Raspberry Pi driver for (chained) TM1638 boards like the 2$ cheap ones you can buy online.
-![One of these TM1638 board](doc/TM1638.JPG)
 
-<img style="float: center;" src="doc/TM1638.JPG">
+![One of these TM1638 board](doc/TM1638.JPG)
 
 These boards have onboard eight 7-segment displays, 8 LEDs and 8 switches.
  With few lines, you can control several TM1638 boards, and uses several LEDs, 7-segment displays and switches with few GPIOs of your Raspberry Pi.
