@@ -13,16 +13,16 @@ INCR_ADDR = 0x00
 FIXED_ADDR = 0x04
 
 
-class chainedTM1638(object):
-	"""chainedTM1638 class"""
+class TM1638s(object):
+	"""TM1638s class"""
 
 	def __init__(self, dio, clk, stb, brightness=1):
 		"""
-		Initialize the chainedTM1638 
+		Initialize a TM1638 (or some chained TM1638s) 
 		GPIO numbers refer to "Broadcom SOC Channel", so CLK=11 means CLK is GPIO11 (so pin 23)
 		:param dio: Data I/O GPIO
 		:param clk: clock GPIO
-		:param stb: Chip Select GPIO    -> a tuple if several chainedTM1638 boards are chained
+		:param stb: Chip Select GPIO    -> a tuple if several TM1638s boards are chained
 		:param brightness: brightness of the display (between 0 and 7)
 		"""
 
@@ -64,6 +64,7 @@ class chainedTM1638(object):
 	def turnOff(self, TMindex=None):
 		"""Turn off (physically) the leds"""
 		self.sendCommand(0x80, TMindex)
+
 
 	def turnOn(self, brightness, TMindex=None):
 		"""
@@ -111,6 +112,7 @@ class chainedTM1638(object):
 		self._sendByte(data)
 		self._setStb(True, TMindex)
 
+
 	def getData(self, TMindex):
 		"""
 		Get the data (buttons) of the TM
@@ -137,7 +139,7 @@ class chainedTM1638(object):
 		Set all the Stb pinouts (if TMindex is True)
 		or only one Stb (given by TMindex) to Value
 		:param value: value given to the Stb(s)
-		:param TMindex: None if all the chainedTM1638 are impacted, or the index of that TM if it concerns only one
+		:param TMindex: None if all the TM1638s are impacted, or the index of that TM if it concerns only one
 		"""
 		if TMindex is None:
 			for stb in self._stb:

@@ -27,11 +27,11 @@ These boards have onboard eight 7-segment displays, 8 LEDs and 8 switches.
     a = TM.switches[2]
 
 The `rpi-TM1638` proposes a two-level API:
-- The class `chainedTM1638` proposes low-level function to manipulate the TM chips:
+- The class `TM1638s` proposes low-level function to manipulate the TM chips:
   - `turnOn(brightness)`,  `turnOff` and `clearDisplay` to turn on/off the displays, clear the displays or set the brightness
   - `sendCommand` and `sendData` to talk with the TM chip
   - plus some intern functions (to change the data mode, etc.)
-- The class `TMboards` (that inherits from `chainedTM1638`) proposes somes methods to manipulate the LEDs, 7-segment displays and switches, with some getter/setter on the properties:
+- The class `TMboards` (that inherits from `TM1638s`) proposes somes methods to manipulate the LEDs, 7-segment displays and switches, with some getter/setter on the properties:
   - `leds`: for the leds
   - `segments`: for the 7-segment displays
   - `switches`: for the switches
