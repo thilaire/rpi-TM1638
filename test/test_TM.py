@@ -22,7 +22,6 @@ TM.segments[3,1] = True     # turn on the segment #1 of the 7-segment number 3
 
 TM.leds = (True, False, True)   # set the three first leds
 
-TM.clearDisplay()
 
 while True:
 	a=TM.getData(0)

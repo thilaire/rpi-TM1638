@@ -12,6 +12,8 @@ WRITE_MODE = 0x00
 INCR_ADDR = 0x00
 FIXED_ADDR = 0x04
 
+# TODO: allow multiple DIO, so that we can receive data from the TMs (the switches) in parallel
+
 
 class TM1638s(object):
 	"""TM1638s class"""
@@ -117,7 +119,7 @@ class TM1638s(object):
 		"""
 		Get the data (buttons) of the TM
 		:param TMindex: number of the TM to receive some data (cannot be None)
-		:return: the four octets read
+		:return: the four octets read (as a list)
 		"""
 		# set in read mode
 		self._setStb(False, TMindex)

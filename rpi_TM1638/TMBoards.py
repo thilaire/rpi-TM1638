@@ -5,6 +5,10 @@ from .TM1638s import TM1638s
 class TMBoards(TM1638s):
 	"""
 	Consider all the chained TM1638 boards (8 leds, 8 7-segment displays and 8 switchs) in one object
+	
+	For the switches, the idea is to first call the method refreshSwitches (that read in one command the state of all the switches)
+	and then used those values with TM.switches[i]
+	(in the TM, you read the state of the switches all together, so once you read the value for the i-th switch, you have the value for all the other switches) 
 	"""
 
 	def __init__( self, dio, clk, stb, brightness=1 ):
@@ -24,32 +28,25 @@ class TMBoards(TM1638s):
 		"""Returns the number of TM1638 boards chained"""
 		return self._nbBoards
 
-
 	@property
 	def leds(self):
 		"""setter for the leds"""
 		return self._leds
-
-	@leds.setter
-	def leds(self, values):
-		"""setter TM.leds = value 
-		where value is a list/tuple of booleans
-		Performs TM.leds[i] = value[i] for all i"""
-		for i, v in enumerate(values):
-			self._leds[i] = v
 
 	@property
 	def segments (self):
 		"""setter for the leds"""
 		return self._segments
 
-	@segments.setter
-	def segments(self, values):
-		"""setter TM.segments = value 
-		where value is a list/tuple of booleans
-		Performs TM.segments[i] = value[i] for all i"""
-		for i, v in enumerate(values):
-			self._segments[i] = v
+	def updateSwitches(self, TMindex=None):
+		"""Update the values
+		:param
+		TMindex: (int) index of the TMBoard used to update the switches. If None all the Boards are asked for new values
+		"""
+		# get the raw data from the TM
+		for t in range(self.nbBoards) if TMindex is None else [TMindex]:
+			d = self.getData(t)
+			# TODO: to be continued
 
 
 
