@@ -53,3 +53,5 @@ The `rpi-TM1638` proposes a two-level API:
   
   
 To use the package, you just need to create a `TMboards` object or create a class that inherits from `TMboards` and proposes some high-level properties on top of it.
+
+![Two TMboards chained. It works!](doc/IMG_1430.JPG)
