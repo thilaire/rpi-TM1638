@@ -24,14 +24,17 @@ class TM1638s(object):
 		GPIO numbers refer to "Broadcom SOC Channel", so CLK=11 means CLK is GPIO11 (so pin 23)
 		:param dio: Data I/O GPIO
 		:param clk: clock GPIO
-		:param stb: Chip Select GPIO    -> a tuple if several TM1638s boards are chained
+		:param stb: Chip Select GPIO    -> a tuple if several TM1638s boards are chained, or a single int
 		:param brightness: brightness of the display (between 0 and 7)
 		"""
 
 		# store the GPIOs
 		self._dio = dio
 		self._clk = clk
-		self._stb = tuple(stb)
+		if isinstance(stb, int):
+			self._stb = (stb,)
+		else:
+			self._stb = tuple(stb)
 
 		# configure the GPIO
 		GPIO.setmode(GPIO.BCM)
