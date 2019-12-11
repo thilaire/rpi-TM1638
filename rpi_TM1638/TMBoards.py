@@ -16,7 +16,7 @@ class TMBoards(TM1638s):
 		super(TMBoards, self).__init__(dio, clk, stb, brightness)
 
 		# nb of boards
-		self._nbBoards = len(stb)
+		self._nbBoards = len(self._stb)
 
 		# add leds, 7-segments
 		self._leds = Leds(self)

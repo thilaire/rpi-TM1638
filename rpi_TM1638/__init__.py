@@ -1,1 +1,1 @@
-from TMBoards import TMBoards
+from .TMBoards import TMBoards
