@@ -67,7 +67,7 @@ class TM1638s(object):
 		self._setStb(False, TMindex)
 		self._setDataMode(WRITE_MODE, INCR_ADDR)   # set data read mode (automatic address increased)
 		self._sendByte(0xC0)   # address command set to the 1st address
-		for i in range(16):
+		for _ in range(16):
 			self._sendByte(0x00)   # set to zero all the addresses
 		self._setStb(True, TMindex)
 
@@ -135,7 +135,7 @@ class TM1638s(object):
 		sleep(20e-6)     # wait at least 10µs ?
 		# read four bytes
 		b = []
-		for i in range(4):
+		for _ in range(4):
 			b.append(self._getByte())
 		self._setStb(True, TMindex)
 		return b
@@ -170,7 +170,7 @@ class TM1638s(object):
 		Send a byte (Stb must be Low)
 		:param data: a byte to send 
 		"""
-		for i in range(8):
+		for _ in range(8):
 			GPIO.output(self._clk, False)
 			GPIO.output(self._dio, (data & 1) == 1)
 			data >>= 1
@@ -185,7 +185,7 @@ class TM1638s(object):
 		GPIO.setup(self._dio, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 		# read 8 bits
 		temp = 0
-		for i in range(8):
+		for _ in range(8):
 			temp >>= 1
 			GPIO.output(self._clk, False)
 			if GPIO.input(self._dio):
