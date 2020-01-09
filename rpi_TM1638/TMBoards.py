@@ -13,12 +13,14 @@ class TMBoards(TM1638s):
 	"""
 	Consider all the chained TM1638 boards (8 leds, 8 7-segment displays and 8 switchs) in one object
 	
-	For the switches, the idea is to first call the method refreshSwitches (that read in one command the state of all the switches)
+	For the switches, the idea is to first call the method updateSwitches
+	(that read in one command the state of all the switches)
 	and then used those values with TM.switches[i]
-	(in the TM, you read the state of the switches all together, so once you read the value for the i-th switch, you have the value for all the other switches) 
+	(in the TM, you read the state of the switches all together, so once you read the value for the i-th switch,
+	you have the value for all the other switches)
 	"""
 
-	def __init__( self, dio, clk, stb, brightness=1 ):
+	def __init__(self, dio, clk, stb, brightness=1):
 		# initialize chainedTM
 		super(TMBoards, self).__init__(dio, clk, stb, brightness)
 
@@ -41,7 +43,7 @@ class TMBoards(TM1638s):
 		return self._leds
 
 	@property
-	def segments (self):
+	def segments(self):
 		"""setter for the leds"""
 		return self._segments
 
@@ -105,7 +107,8 @@ class Segments(object):
 				Example:
 				TM.segments[2,3] = True -> set the 3rd segment of the 2nd 7-segment display
 
-		i: index of the 7-segment display (0 for the 1st 7-segments (left of the 1st TM Board), 8 for the 1st of the 2nd board, etc.)
+		i: index of the 7-segment display (0 for the 1st 7-segments (left of the 1st TM Board),
+			8 for the 1st of the 2nd board, etc.)
 		j: number of the segment (between 0 and 8)
 
 

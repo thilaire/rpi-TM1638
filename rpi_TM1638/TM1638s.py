@@ -90,7 +90,6 @@ class TM1638s(object):
 		"""
 		self.sendCommand(0x88 | (brightness & 7), TMindex)
 
-
 	# ==========================
 	# Communication with the TM
 	# (mainly used by TMBoards)
@@ -133,14 +132,13 @@ class TM1638s(object):
 		# set in read mode
 		self._setStb(False, TMindex)
 		self._setDataMode(READ_MODE, INCR_ADDR)
-		sleep(20e-6) # wait at least 10µs ?
+		sleep(20e-6)     # wait at least 10µs ?
 		# read four bytes
 		b = []
 		for i in range(4):
 			b.append(self._getByte())
 		self._setStb(True, TMindex)
 		return b
-
 
 	# ==================
 	# Internal functions

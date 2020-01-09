@@ -5,11 +5,12 @@
 from time import sleep
 from rpi_TM1638 import TMBoards
 
-# my GPIO settings (two TM1638 boards connected on GPIO19 and GPIO13 for DataIO and Clock; and on GPIO06 and GPIO26 for the STB)
+# my GPIO settings
+# (one TM1638 board connected to GPIO19 for dataIO, GPIO13 for Clock, and GPIO26 for the STB)
 DIO = 19
 CLK = 13
 STB = 26
-#STB = 6, 26
+# STB = 6, 26   # in case you have two TM1638 boards, connected to GPIO06 and GPIO26
 
 # instanciante my TMboards
 TM = TMBoards(DIO, CLK, STB, 0)

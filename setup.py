@@ -16,10 +16,10 @@ def readme():
 
 
 setup(name='rpi_TM1638',
-	version='0.1',
-	description='A Raspberry Pi driver for (chained) TM1638 boards',
-	long_description=readme(),
-	classifiers=[
+      version='0.1',
+      description='A Raspberry Pi driver for (chained) TM1638 boards',
+      long_description=readme(),
+      classifiers=[
 		'Development Status :: 4 - Beta',
 		'Operating System :: POSIX :: Linux',
 		'Environment :: Other Environment',
