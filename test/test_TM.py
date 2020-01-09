@@ -30,11 +30,7 @@ TM.segments[3, 1] = True     # turn on the segment #1 of the 7-segment number 3
 TM.segments[8] = '01234567'
 
 
-
-#
 # while True:
-# 	a=TM.getData(0)
-# 	b=TM.getData(1)
-# 	TM.segments[0] = ''.join("%02d"%x for x in a)
-# 	TM.segments[8] = ''.join("%02d" % x for x in b)
+# 	TM.segments[0] = 'OK  ' if TM.switches[0] else 'OK  '
+# 	TM.segments[4] = 'OK  ' if TM.switches[1] else 'OK  '
 # 	sleep(0.01)
