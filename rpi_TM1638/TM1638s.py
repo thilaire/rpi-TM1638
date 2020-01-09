@@ -1,5 +1,11 @@
 # coding=utf-8
 
+"""
+Contains the class TM1638s
+It's a low-level class to manipulate a TM1638 board
+"""
+
+
 from RPi import GPIO
 from time import sleep
 

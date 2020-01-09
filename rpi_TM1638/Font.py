@@ -1,4 +1,7 @@
-# inspired by http://code.google.com/p/tm1638-library/
+"""
+ This file contains the definition of the font for a 7-segment display
+
+ It is inspired by http://code.google.com/p/tm1638-library/ (thanks folks)
 
 # The bits are displayed by mapping bellow
 #  -- 0 --
@@ -10,6 +13,7 @@
 # 4       2
 # |       |
 #  -- 3 --   o 7
+"""
 
 # definition of the 7-segment Font
 FONT = {

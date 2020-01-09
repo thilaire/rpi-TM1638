@@ -1,7 +1,8 @@
-# setup.py file for the rpi-TM1638 package
-# this package provides a Raspberry Pi driver for (chained) TM1638 boards
-#
-# see https://github.com/thilaire/rpi-TM1638
+""" setup.py file for the rpi-TM1638 package
+this package provides a Raspberry Pi driver for (chained) TM1638 boards
+
+see https://github.com/thilaire/rpi-TM1638
+"""
 
 from setuptools import setup
 

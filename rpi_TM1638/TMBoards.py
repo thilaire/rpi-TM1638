@@ -1,3 +1,9 @@
+
+"""
+Contains the class TMBoards
+It's a higher-level class to manipulate a TM1638 board
+"""
+
 from .Font import FONT  # import the 7-segment Font
 from .TM1638s import TM1638s
 

@@ -1,4 +1,7 @@
 # coding=utf-8
+
+"""This file shows some use of the rpi_TM1638 librairy"""
+
 from time import sleep
 from rpi_TM1638 import TMBoards
 
@@ -24,7 +27,7 @@ TM.segments[4] = '98.76'     # display '9876' on the 7-segment display number 4,
 TM.segments[3, 1] = True     # turn on the segment #1 of the 7-segment number 3
 
 TM.segments[8] = '01234567'
-TM.leds = (True, False, True)   # set the three first leds
+
 
 
 #
