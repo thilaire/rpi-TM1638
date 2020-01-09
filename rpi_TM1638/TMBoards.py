@@ -27,9 +27,10 @@ class TMBoards(TM1638s):
 		# nb of boards
 		self._nbBoards = len(self._stb)
 
-		# add leds, 7-segments
+		# add leds, 7-segments and switches
 		self._leds = Leds(self)
 		self._segments = Segments(self)
+		self._switches = Switches(self)
 
 
 	@property
@@ -39,24 +40,18 @@ class TMBoards(TM1638s):
 
 	@property
 	def leds(self):
-		"""setter for the leds"""
+		"""getter for the leds"""
 		return self._leds
 
 	@property
 	def segments(self):
-		"""setter for the leds"""
+		"""getter for the leds"""
 		return self._segments
 
-	def updateSwitches(self, TMindex=None):
-		"""Update the values
-		:param
-		TMindex: (int) index of the TMBoard used to update the switches. If None all the Boards are asked for new values
-		"""
-		# get the raw data from the TM
-		for t in range(self.nbBoards) if TMindex is None else [TMindex]:
-			d = self.getData(t)
-			# TODO: to be continued
-
+	@property
+	def switches(self):
+		"""getter for the switch"""
+		return self._switches
 
 
 class Leds(object):
@@ -86,6 +81,8 @@ class Segments(object):
 		"""Initialize the Segment object"""
 		self._TM = TM
 		self._intern = [0, ] * (8 * self._TM.nbBoards)  # 8 7-segments per board
+
+		# TODO: add the __getitem__ method (just returns the self._intern)
 
 	def __setitem__(self, index, value):
 		"""
@@ -147,5 +144,31 @@ class Segments(object):
 			# send the data to the TM
 			self._TM.sendData((i % 8) * 2, self._intern[i], i // 8)
 
+
+class Switches(object):
+	"""Class to manipulate the switches on the chained TM Boards"""
+
+	def __init__(self, TM):
+		"""Initialize the Segment object"""
+		self._TM = TM
+		# self._intern = [[0 for _ in range(8) * self._TM.nbBoards] for _ in range(4)]  # 4*8 switches per board
+
+	def __getitem__(self, item):
+		"""Getter for the switch
+		the item should be:
+		- a tuple (K,n)
+			where K is the line number (between 0 and 3, for K0, K1, K2 and K3)
+			and n is the switch number (0 to 7 for the 1st board, 8 to 15 for the 2nd, etc.)
+		- or an int n (K is supposed to be equal to 0)
+		"""
+		# get K and n
+		if isinstance(item, list):
+			K, n = item
+		else:
+			n = item
+			K = 0
+		# get the data
+		sw = self._TM._getData(n//8)        # get the complete byte
+		return bool(sw[K] & (1 << n))
 
 
