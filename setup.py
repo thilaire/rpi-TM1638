@@ -1,3 +1,5 @@
+# coding=utf-8
+
 """ setup.py file for the rpi-TM1638 package
 this package provides a Raspberry Pi driver for (chained) TM1638 boards
 
