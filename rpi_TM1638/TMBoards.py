@@ -167,6 +167,11 @@ class Switches(object):
 		else:
 			n = item
 			K = 0
+			sw = self._TM.getData(0) # Case for just one board
+			if n < 4:
+				return bool(sw[n%4]==1)
+			else:
+				return bool(sw[n%4]==16)
 		# get the data
 		sw = self._TM._getData(n//8)        # get the complete byte
 		return bool(sw[K] & (1 << n))
