@@ -28,7 +28,6 @@ def num_update():
 while True:
     for i in range(8):
         TM.leds[i] = True if TM.switches[i] else False
-        sleep(0.01)
     if TM.switches[0]: num_left -= 1
     if TM.switches[1]: num_left += 1
     if TM.switches[2]: num_left = 0
