@@ -168,7 +168,7 @@ class Switches(object):
 			n = item
 			K = 0
 		# get the data
-		sw = self._TM._getData(n//8)        # get the complete byte
+		sw = self._TM.getData(n//8)        # get the complete byte
 		return bool(sw[K] & (1 << n))
 
 
